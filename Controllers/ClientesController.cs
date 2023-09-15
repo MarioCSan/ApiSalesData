@@ -25,7 +25,7 @@ namespace ApiSalesData.Controllers
         public ActionResult<List<Cliente>> GetClientes()
         {
             List<Claim> claims = HttpContext.User.Claims.ToList();
-            String jsonusuario = claims.SingleOrDefault(x => x.Type == "UserData").Value;
+            String jsonusuario = claims.SingleOrDefault(x => x.Type == "Cliente").Value;
 
             Cliente cliente = JsonConvert.DeserializeObject<Cliente>(jsonusuario);
             return this.repo.GetClientes();
