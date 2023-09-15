@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ApiSalesData.Repositories
 {
-    public class RepositoryClientes
+    public class RepositoryClientes : IRepositoryClientes
     {
 
         private ClienteContext context;

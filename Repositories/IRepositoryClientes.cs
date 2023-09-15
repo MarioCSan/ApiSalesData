@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApiSalesData.Repositories
 {
-    public interface IRepositoryCliente
+    public interface IRepositoryClientes
     {
         List<Cliente> GetClientes();
 

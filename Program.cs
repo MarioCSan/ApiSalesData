@@ -11,7 +11,7 @@ string connectionString = builder.Configuration.GetConnectionString("ApiSalesDat
 builder.Services.AddDbContext<ClienteContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddScoped<RepositoryClientes>();
+builder.Services.AddScoped<IRepositoryClientes, RepositoryClientes>();
 
 
 builder.Services.AddControllers();

@@ -14,9 +14,10 @@ namespace ApiSalesData.Controllers
     {
 
 
-        IRepositoryCliente repo;
+        IRepositoryClientes repo;
 
-        public ClientesController(RepositoryClientes repo)
+
+        public ClientesController(IRepositoryClientes repo)
         {
             this.repo = repo;
         }
