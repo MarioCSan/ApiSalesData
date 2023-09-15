@@ -31,34 +31,47 @@ namespace ApiSalesData.Repositories
         }
 
        
-        public void PostClientes(Cliente cliente)
+        public void PostClientes(String email, string nombre, string apellido, string empresa, string pais)
         {
+            DateTime fecha = DateTime.Now;
+
+            string fechaEnFormatoISO8601 = fecha.ToString("o");
+
+            DateTime fechaCreacion = DateTime.Parse(fechaEnFormatoISO8601, null, System.Globalization.DateTimeStyles.RoundtripKind);
+
             var consulta = from datos in this.context.Cliente
-                           select datos.Id;
+                           select datos.IdCliente;
 
 
-            int maxId = consulta.Max();
+            int maxId;
+            if (consulta.Max() == 0)
+            {
+                maxId =  1;
+            } else
+            {
+                maxId = consulta.Max();
+            }
 
             Cliente cli = new Cliente();
-            cli.Id = maxId + 1;
-            cli.email = cliente.email;
-            cli.nombre = cliente.nombre;
-            cli.apellido = cliente.apellido;
-            cli.empresa = cliente.empresa;
-            cli.fechaCreacion = cliente.fechaCreacion;
-            cli.pais = cliente.pais;
+            cli.IdCliente = maxId + 1;
+            cli.email = email;
+            cli.nombre = nombre;
+            cli.apellido = apellido;
+            cli.empresa = empresa;
+            cli.fechaCreacion = fechaCreacion;
+            cli.pais = pais;
             this.context.Add(cli);
             this.context.SaveChanges();
         }
 
         public Cliente BuscarCliente(int idCliente)
         {
-            return this.context.Cliente.Where(z => z.Id == idCliente).FirstOrDefault();
+            return this.context.Cliente.Where(z => z.IdCliente == idCliente).FirstOrDefault();
         }
 
-        public void ModificarCliente(Cliente cliente)
+        public void ModificarCliente(int idCliente,Cliente cliente)
         {
-            Cliente cli = this.BuscarCliente(cliente.Id);
+            Cliente cli = this.BuscarCliente(idCliente);
             cli.nombre = cliente.nombre;
             cli.apellido = cliente.apellido;
             cli.empresa= cliente.empresa;

@@ -13,6 +13,20 @@ builder.Services.AddDbContext<ClienteContext>(options =>
 
 builder.Services.AddScoped<IRepositoryClientes, RepositoryClientes>();
 
+builder.Services.AddDbContext<ClienteContext>(options =>
+{
+    options.UseSqlServer(
+        "TuCadenaDeConexion",
+        sqlServerOptionsAction: sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(30),
+                errorNumbersToAdd: null
+            );
+        });
+});
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

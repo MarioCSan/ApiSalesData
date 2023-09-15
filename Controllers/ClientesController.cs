@@ -25,28 +25,25 @@ namespace ApiSalesData.Controllers
         [HttpGet]
         public ActionResult<List<Cliente>> GetClientes()
         {
-            List<Claim> claims = HttpContext.User.Claims.ToList();
-            String jsonusuario = claims.SingleOrDefault(x => x.Type == "Cliente").Value;
-
-            Cliente cliente = JsonConvert.DeserializeObject<Cliente>(jsonusuario);
+            
             return this.repo.GetClientes();
         }
 
         [HttpPost]
         [Route("[action]")]
-        public ActionResult<Cliente> PostCliente(Cliente Cliente)
+        public ActionResult<Cliente> PostCliente(String email, String nombre, String apellido, String empresa, String pais)
         {
             
-            this.repo.PostClientes(Cliente);
-            return RedirectToAction("GetTransaccionesUsuario");
+            this.repo.PostClientes(email, nombre, apellido, empresa, pais);
+            return RedirectToAction("PostCliente");
         }
 
         [HttpPut]
-        [Route("[action]/{idtransaccion}")]
-        public ActionResult<Cliente> Modificar(Cliente cliente)
+        [Route("[action]/{idCliente}")]
+        public ActionResult<Cliente> Modificar(int idcliente, Cliente cliente)
         {
 
-            this.repo.ModificarCliente(cliente);
+            this.repo.ModificarCliente(idcliente, cliente);
             return RedirectToAction("GetClientes");
         }
 
