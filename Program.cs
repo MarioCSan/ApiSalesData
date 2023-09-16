@@ -16,7 +16,7 @@ builder.Services.AddScoped<IRepositoryClientes, RepositoryClientes>();
 builder.Services.AddDbContext<ClienteContext>(options =>
 {
     options.UseSqlServer(
-        "TuCadenaDeConexion",
+        "ApiSalesDataContext",
         sqlServerOptionsAction: sqlOptions =>
         {
             sqlOptions.EnableRetryOnFailure(
@@ -42,7 +42,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseCors(builder => builder.WithOrigins("*")/*.AllowAnyOrigin()*/.AllowAnyHeader().AllowAnyMethod());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
