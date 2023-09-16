@@ -1,8 +1,6 @@
 ﻿using ApiSalesData.Controllers;
 using ApiSalesData.Data;
 using ApiSalesData.Models;
-using ApiSalesData.Data;
-using ApiSalesData.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +23,7 @@ namespace ApiSalesData.Repositories
        
         public List<Cliente> GetClientes()
         {
-            var consulta = (from datos in this.context.Cliente
+            var consulta = (from datos in this.context.Clientes
                             select datos);
             return consulta.ToList();
         }
@@ -37,7 +35,7 @@ namespace ApiSalesData.Repositories
 
             string fechaCreacion = fecha.ToUniversalTime().ToString("o");
 
-            var consulta = from datos in this.context.Cliente
+            var consulta = from datos in this.context.Clientes
                            select datos.IdCliente;
 
 
@@ -64,7 +62,7 @@ namespace ApiSalesData.Repositories
 
         public Cliente BuscarCliente(int idCliente)
         {
-            return this.context.Cliente.Where(z => z.IdCliente == idCliente).FirstOrDefault();
+            return this.context.Clientes.Where(z => z.IdCliente == idCliente).FirstOrDefault();
         }
 
         public void ModificarCliente(int idCliente, String email, String nombre, String apellido, String empresa, String fechaCreacion, String pais)
@@ -83,7 +81,7 @@ namespace ApiSalesData.Repositories
         public void EliminarCliente(int idCliente)
         {
             Cliente cliente= this.BuscarCliente(idCliente);
-            this.context.Cliente.Remove(cliente);
+            this.context.Clientes.Remove(cliente);
             this.context.SaveChanges();
         }
 
