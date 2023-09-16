@@ -12,7 +12,7 @@ namespace ApiSalesData.Data
     {
 
         public ClienteContext(DbContextOptions<ClienteContext> options): base(options) { }
-        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
 
 
     }
