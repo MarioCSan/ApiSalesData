@@ -29,30 +29,27 @@ namespace ApiSalesData.Controllers
             return this.repo.GetClientes();
         }
 
-        [HttpPost]
-        [Route("[action]")]
+       [HttpPost("CrearCliente")]
         public ActionResult<Cliente> PostCliente(String email, String nombre, String apellido, String empresa, String pais)
         {
             
             this.repo.PostClientes(email, nombre, apellido, empresa, pais);
-            return RedirectToAction("PostCliente");
+            return Ok();
         }
 
-        [HttpPut]
-        [Route("[action]/{idCliente}")]
+        [HttpPut("ModificarCliente/{idCliente}")]
         public ActionResult<Cliente> Modificar(int idCliente, String email, String nombre, String apellido, String empresa, String fechaCreacion, String pais)
         {
 
             this.repo.ModificarCliente(idCliente, email, nombre, apellido, empresa, fechaCreacion, pais );
-            return RedirectToAction("GetClientes");
+            return Ok();
         }
 
-        [HttpDelete]
-        [Route("[action]/{idCliente}")]
+        [HttpDelete("EliminarCliente/{idCliente}")]
         public ActionResult<Cliente> EliminarCliente(int idCliente)
         {
             this.repo.EliminarCliente(idCliente);
-            return RedirectToAction("GetClientes");
+            return Ok();
         }
 
     }
