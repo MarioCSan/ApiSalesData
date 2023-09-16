@@ -15,7 +15,7 @@ namespace ApiSalesData.Models
 
         public string empresa { get; set; }
 
-        public DateTime fechaCreacion { get; set; }
+        public string fechaCreacion { get; set; }
 
         public string pais { get; set; }
 

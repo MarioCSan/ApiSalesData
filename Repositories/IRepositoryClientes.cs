@@ -16,6 +16,6 @@ namespace ApiSalesData.Repositories
 
         void PostClientes(string email, string nombre, string apellido, string empresa, string pais);
 
-        void ModificarCliente(int idCliente, Cliente cliente);
+        void ModificarCliente(int idCliente, String email, String nombre, String apellido, String empresa, String fechaCreacion, String pais);
     }
 }

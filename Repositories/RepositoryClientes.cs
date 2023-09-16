@@ -35,9 +35,7 @@ namespace ApiSalesData.Repositories
         {
             DateTime fecha = DateTime.Now;
 
-            string fechaEnFormatoISO8601 = fecha.ToString("o");
-
-            DateTime fechaCreacion = DateTime.Parse(fechaEnFormatoISO8601, null, System.Globalization.DateTimeStyles.RoundtripKind);
+            string fechaCreacion = fecha.ToUniversalTime().ToString("o");
 
             var consulta = from datos in this.context.Cliente
                            select datos.IdCliente;
@@ -69,14 +67,15 @@ namespace ApiSalesData.Repositories
             return this.context.Cliente.Where(z => z.IdCliente == idCliente).FirstOrDefault();
         }
 
-        public void ModificarCliente(int idCliente,Cliente cliente)
+        public void ModificarCliente(int idCliente, String email, String nombre, String apellido, String empresa, String fechaCreacion, String pais)
         {
             Cliente cli = this.BuscarCliente(idCliente);
-            cli.nombre = cliente.nombre;
-            cli.apellido = cliente.apellido;
-            cli.empresa= cliente.empresa;
-            cli.fechaCreacion= cliente.fechaCreacion;
-            cli.pais= cliente.pais;
+            cli.email = email;
+            cli.nombre = nombre;
+            cli.apellido = apellido;
+            cli.empresa= empresa;
+            cli.fechaCreacion = fechaCreacion;
+            cli.pais= pais;
            
             this.context.SaveChanges();
         }

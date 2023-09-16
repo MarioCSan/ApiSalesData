@@ -40,10 +40,10 @@ namespace ApiSalesData.Controllers
 
         [HttpPut]
         [Route("[action]/{idCliente}")]
-        public ActionResult<Cliente> Modificar(int idcliente, Cliente cliente)
+        public ActionResult<Cliente> Modificar(int idCliente, String email, String nombre, String apellido, String empresa, String fechaCreacion, String pais)
         {
 
-            this.repo.ModificarCliente(idcliente, cliente);
+            this.repo.ModificarCliente(idCliente, email, nombre, apellido, empresa, fechaCreacion, pais );
             return RedirectToAction("GetClientes");
         }
 
