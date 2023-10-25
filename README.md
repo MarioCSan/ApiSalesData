@@ -23,4 +23,4 @@ Los datos se importaron en SQL Server y fueron utilizados por el backend.
 
 ## Más información
 Este repositorio contiene la parte de backend.
-El frontal se encuentra en [este repositorio](https://github.com/MarioCSan/frontPrueba)
+El frontal se encuentra en [este repositorio](https://github.com/MarioCSan/ReactSalesData)
